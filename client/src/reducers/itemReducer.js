@@ -1,4 +1,4 @@
-import {v1 as uuid} from 'uuid'
+//import {v1 as uuid} from 'uuid'
 import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from '../actions/types'
 
 const initialState = {
