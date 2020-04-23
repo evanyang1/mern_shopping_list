@@ -1,9 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const bodyParser = require('body-parser')
-const path = require('path')
 
-const items = require('./routes/api/items')
+const path = require('path')
+const config = require('config')
+
 
 
 require('dotenv').config()
@@ -11,7 +11,7 @@ const app = express()
 
 
 // Bodyparser middleware
-app.use(bodyParser.json())
+app.use(express.json())
 
 require('./config').then(() => {
     console.log('mongodb connected!!!')
@@ -20,7 +20,9 @@ require('./config').then(() => {
 .catch(e => console.error(e));
 
 // Use routes
-app.use('/api/items', items)
+app.use('/api/items', require('./routes/api/items'))
+app.use('/api/users', require('./routes/api/users'))
+app.use('/api/auth', require('./routes/api/auth'))
 
 // serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
